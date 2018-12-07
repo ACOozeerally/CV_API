@@ -34,11 +34,11 @@ public class CVUploadEndpoint {
 	public CVUploadEndpoint(StorageService storageService) {
 		this.storageService = storageService;
 	}
-	
+
 	@Autowired
 	private CVRepository cvRepo;
 
-	@GetMapping("/")
+	@GetMapping("/cv/addcv")
 	public String listUploadedFiles(Model model) throws IOException {
 
 		model.addAttribute("files",
@@ -47,7 +47,6 @@ public class CVUploadEndpoint {
 								.fromMethodName(CVUploadEndpoint.class, "serveFile", path.getFileName().toString())
 								.build().toString())
 						.collect(Collectors.toList()));
-
 		return "uploadForm";
 	}
 
@@ -61,16 +60,17 @@ public class CVUploadEndpoint {
 				.body(file);
 	}
 
-	@PostMapping("/")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, CV cv) {
-		
+	@PostMapping("/cv/addcv")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes,
+			CV cv) {
+
 		storageService.store(file);
-		cv.setCvPath(Constants.CV_PATH + file.getOriginalFilename());
+		cv.setCvPath(Constants.CV_FILES_PATH + file.getOriginalFilename());
 		cvRepo.save(cv);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 
-		return "redirect:/";
+		return "redirect:/cv/addcv";
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

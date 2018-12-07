@@ -40,13 +40,13 @@ public class CVEndpoint {
 	}
 
 	@DeleteMapping(path = "/deleteCV/{id}")
-	public String deleteUser(@PathVariable int id) {
+	public String deleteCV(@PathVariable int id) {
 		cvService.deleteCV(id);
 		return Constants.CV_DELETED;
 	}
 
 	@PutMapping(path = "/updateCV/{id}")
-	public String updateUser(@PathVariable int id, @RequestBody CV cv) {
+	public String updateCV(@PathVariable int id, @RequestBody CV cv) {
 		cvService.updateCV(id, cv);
 		return Constants.CV_UPDATED;
 	}

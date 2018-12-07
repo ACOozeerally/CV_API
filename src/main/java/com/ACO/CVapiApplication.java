@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import com.ACO.storage.StorageProperties;
 import com.ACO.storage.StorageService;
 
-
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 public class CVapiApplication {
@@ -21,7 +20,6 @@ public class CVapiApplication {
 	@Bean
 	CommandLineRunner init(StorageService storageService) {
 		return (args) -> {
-			storageService.deleteAll();
 			storageService.init();
 		};
 	}
