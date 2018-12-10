@@ -13,19 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.ACO.service.CVService;
 
 @Service
 public class FileSystemStorageService implements StorageService {
 
 	private final Path rootLocation;
-
-	@Autowired
-	private CVService cvService;
 
 	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
@@ -84,11 +78,6 @@ public class FileSystemStorageService implements StorageService {
 			throw new StorageFileNotFoundException("Could not read file: " + filename, e);
 		}
 	}
-
-//    @Override
-//    public void deleteAll() {
-//        FileSystemUtils.deleteRecursively(rootLocation.toFile());
-//    }
 
 	@Override
 	public void init() {

@@ -38,6 +38,7 @@ public class CVUploadEndpoint {
 	@Autowired
 	private CVRepository cvRepo;
 
+	//List all added CVs
 	@GetMapping("/cv/addcv")
 	public String listUploadedFiles(Model model) throws IOException {
 
@@ -60,12 +61,14 @@ public class CVUploadEndpoint {
 				.body(file);
 	}
 
+	//Add a new CV
 	@PostMapping("/cv/addcv")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes,
 			CV cv) {
 
 		storageService.store(file);
 		cv.setCvPath(Constants.CV_FILES_PATH + file.getOriginalFilename());
+		cv.setFlag(0);
 		cvRepo.save(cv);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
