@@ -25,7 +25,7 @@ public class CVService implements ICVService {
 		return cvRepo.findAll();
 	}
 
-//	 Update CV
+	// Update CV
 	public CV updateCV(int id, CV cv) {
 		Optional<CV> cvInDB = cvRepo.findById(id);
 		deleteCV(cvInDB.get().getId());
