@@ -2,11 +2,13 @@ package com.ACO.storage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("storage")
+import com.ACO.Constants.Constants;
+
+@ConfigurationProperties(Constants.STORAGE_PATH)
 public class StorageProperties {
 
 	//Folder location for storing files
-	private String location = "upload-dir";
+	private String location = Constants.STORAGE_DIR;
 
 	public String getLocation() {
 		return location;

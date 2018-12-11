@@ -17,58 +17,58 @@ import com.ACO.domain.CV;
 import com.ACO.service.CVService;
 
 @Controller
-@RequestMapping(path = "/cv")
+@RequestMapping(path = Constants.CV_PATH_EP)
 public class CVEndpoint {
 
 	@Autowired
 	private CVService cvService;
 
 	//Get All CVs
-	@GetMapping(path = "/getAll")
+	@GetMapping(path = Constants.CV_GET_ALL_EP)
 	public @ResponseBody Iterable<CV> getAllCVs() {
 		return cvService.getAllCVs();
 	}
 
 	//Get a CV
-	@GetMapping(path = "/getCV/{id}")
+	@GetMapping(path = Constants.CV_GET_CV_EP)
 	public Optional<CV> getCV(@PathVariable int id) {
 		return cvService.getCV(id);
 	}
 
 	//Delete a CV
-	@DeleteMapping(path = "/deleteCV/{id}")
+	@DeleteMapping(path = Constants.CV_DELETE_EP)
 	public String deleteCV(@PathVariable int id) {
 		cvService.deleteCV(id);
 		return Constants.CV_DELETED;
 	}
 
 	//Update a CV
-	@PutMapping(path = "/updateCV/{id}")
+	@PutMapping(path = Constants.CV_UPDATE_EP)
 	public String updateCV(@PathVariable int id, @RequestBody CV cv) {
 		cvService.updateCV(id, cv);
 		return Constants.CV_UPDATED;
 	}
 
 	//Get all Flagged CVs
-	@GetMapping(path = "/getAllFlagged")
+	@GetMapping(path = Constants.CV_ALL_FLAGGED_EP)
 	public @ResponseBody Iterable<CV> getAllFlagged() {
 		return cvService.getAllFlagged();
 	}
 
 	//Get all Medium Flagged CVs
-	@GetMapping(path = "/getAllMediumFlagged")
+	@GetMapping(path = Constants.CV_MEDIUM_FLAGGED_EP)
 	public @ResponseBody Iterable<CV> getAllMediumFlagged() {
 		return cvService.getMediumFlagged();
 	}
 
 	//Get all Bad Flagged CVs
-	@GetMapping(path = "/getAllBadFlagged")
+	@GetMapping(path = Constants.CV_BAD_FLAGGED_EP)
 	public @ResponseBody Iterable<CV> getAllBadFlagged() {
 		return cvService.getBadFlagged();
 	}
 
 	//Flag/Unflag a CV
-	@PutMapping(path = "/updateFlag/{id}/{flag}")
+	@PutMapping(path = Constants.CV_UPDATE_FLAG)
 	public String updateFlag(@PathVariable int id, @PathVariable int flag) {
 		cvService.updateFlag(id, flag);
 		return Constants.CV_FLAGGED;

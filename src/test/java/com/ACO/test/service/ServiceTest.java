@@ -32,7 +32,7 @@ public class ServiceTest {
 	@Test
 	public void createCV() {
 		cv.setId(1);
-		cv.setCvPath(Constants.CV_PATH_TEST);
+		cv.setCvPath(Constants.TEST_PATH);
 		service.addCV(cv);
 
 		when(repo.count()).thenReturn(1l);

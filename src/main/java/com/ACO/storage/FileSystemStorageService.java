@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ACO.Constants.Constants;
+
 @Service
 public class FileSystemStorageService implements StorageService {
 
@@ -32,18 +34,18 @@ public class FileSystemStorageService implements StorageService {
 
 		try {
 			if (file.isEmpty()) {
-				throw new StorageException("Failed to store empty file " + filename);
+				throw new StorageException(Constants.STORAGE_FAIL_EMPTY + filename);
 			}
 			if (filename.contains("..")) {
 				// This is a security check
 				throw new StorageException(
-						"Cannot store file with relative path outside current directory " + filename);
+						Constants.STORAGE_PATH_FAIL + filename);
 			}
 			try (InputStream inputStream = file.getInputStream()) {
 				Files.copy(inputStream, this.rootLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
 			}
 		} catch (IOException e) {
-			throw new StorageException("Failed to store file " + filename, e);
+			throw new StorageException(Constants.STORAGE_FILE_FAIL + filename, e);
 		}
 
 	}
@@ -54,7 +56,7 @@ public class FileSystemStorageService implements StorageService {
 			return Files.walk(this.rootLocation, 1).filter(path -> !path.equals(this.rootLocation))
 					.map(this.rootLocation::relativize);
 		} catch (IOException e) {
-			throw new StorageException("Failed to read stored files", e);
+			throw new StorageException(Constants.STORAGE_FAIL_TO_READ, e);
 		}
 	}
 
@@ -71,11 +73,11 @@ public class FileSystemStorageService implements StorageService {
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
 			} else {
-				throw new StorageFileNotFoundException("Could not read file: " + filename);
+				throw new StorageFileNotFoundException(Constants.STORAGE_COULD_NOT_READ + filename);
 
 			}
 		} catch (MalformedURLException e) {
-			throw new StorageFileNotFoundException("Could not read file: " + filename, e);
+			throw new StorageFileNotFoundException(Constants.STORAGE_COULD_NOT_READ + filename, e);
 		}
 	}
 
@@ -84,7 +86,7 @@ public class FileSystemStorageService implements StorageService {
 		try {
 			Files.createDirectories(rootLocation);
 		} catch (IOException e) {
-			throw new StorageException("Could not initialize storage", e);
+			throw new StorageException(Constants.STORAGE_COULD_NOT_INITIALISE, e);
 		}
 	}
 }

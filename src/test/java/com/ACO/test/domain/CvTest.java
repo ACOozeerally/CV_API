@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import org.mockito.Mockito;
 
+import com.ACO.Constants.Constants;
 import com.ACO.domain.CV;
 
 public class CvTest {
@@ -21,11 +22,11 @@ public class CvTest {
 
 	@Test
 	public void domainTest() {
-		String path = "Test Path";
+		String path = Constants.TEST_PATH;
 
 		cv.setCvPath(path);
 
-		when(cv.getCvPath()).thenReturn("Test Path");
+		when(cv.getCvPath()).thenReturn(Constants.TEST_PATH);
 
 		assertEquals(path, cv.getCvPath());
 	}
