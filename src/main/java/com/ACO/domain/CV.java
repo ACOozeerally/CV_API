@@ -14,6 +14,8 @@ public class CV {
 
 	private String cvPath;
 
+	private int flag;
+
 	public int getId() {
 		return id;
 	}
@@ -28,6 +30,14 @@ public class CV {
 
 	public void setCvPath(String cvPath) {
 		this.cvPath = cvPath;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 }

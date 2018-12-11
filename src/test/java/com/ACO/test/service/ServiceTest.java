@@ -3,12 +3,15 @@ package com.ACO.test.service;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.ACO.Constants.Constants;
 import com.ACO.domain.CV;
 import com.ACO.repository.CVRepository;
 import com.ACO.service.CVService;
@@ -29,7 +32,7 @@ public class ServiceTest {
 	@Test
 	public void createCV() {
 		cv.setId(1);
-		cv.setCvPath("test path");
+		cv.setCvPath(Constants.TEST_PATH);
 		service.addCV(cv);
 
 		when(repo.count()).thenReturn(1l);
@@ -56,9 +59,9 @@ public class ServiceTest {
 		cv.setId(1);
 		service.deleteCV(1);
 
-		when(service.deleteCV(1)).thenReturn("CV has been deleted");
+		when(service.deleteCV(1)).thenReturn(Constants.CV_DELETED);
 
-		String expected = "CV has been deleted";
+		String expected = Constants.CV_DELETED;
 
 		assertEquals(expected, service.deleteCV(1));
 	}
