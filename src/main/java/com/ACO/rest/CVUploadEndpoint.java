@@ -69,6 +69,7 @@ public class CVUploadEndpoint {
 		storageService.store(file);
 		cv.setCvPath(Constants.CV_FILES_PATH + file.getOriginalFilename());
 		cv.setFlag(0);
+		cv.setUsername("Alvin");
 		cvRepo.save(cv);
 		redirectAttributes.addFlashAttribute("message",
 				Constants.CV_SUCCESSFUL + file.getOriginalFilename() + "!");

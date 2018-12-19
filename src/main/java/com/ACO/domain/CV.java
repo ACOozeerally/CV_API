@@ -11,6 +11,8 @@ public class CV {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	private String username;
 
 	private String cvPath;
 
@@ -40,4 +42,11 @@ public class CV {
 		this.flag = flag;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

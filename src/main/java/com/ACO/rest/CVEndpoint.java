@@ -72,5 +72,5 @@ public class CVEndpoint {
 	public String updateFlag(@PathVariable int id, @PathVariable int flag) {
 		cvService.updateFlag(id, flag);
 		return Constants.CV_FLAGGED;
-	}
+	}	
 }

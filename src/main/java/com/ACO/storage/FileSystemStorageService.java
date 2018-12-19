@@ -74,7 +74,6 @@ public class FileSystemStorageService implements StorageService {
 				return resource;
 			} else {
 				throw new StorageFileNotFoundException(Constants.STORAGE_COULD_NOT_READ + filename);
-
 			}
 		} catch (MalformedURLException e) {
 			throw new StorageFileNotFoundException(Constants.STORAGE_COULD_NOT_READ + filename, e);

@@ -9,6 +9,9 @@ public class Constants {
 	public static final String CV_DELETE_EP = "/deleteCV/{id}";
 	public static final String CV_UPDATE_EP = "/updateCV/{id}";
 
+	// Admin Endpoints
+	public static final String ADMIN_PATH = "/admin";
+
 	// Flag Endpoints
 	public static final String CV_ALL_FLAGGED_EP = "/getAllFlagged";
 	public static final String CV_MEDIUM_FLAGGED_EP = "/getAllMediumFlagged";
@@ -24,7 +27,7 @@ public class Constants {
 	public static final String CV_SUCCESSFUL = "You successfully uploaded ";
 	public static final String CV_DELETED = "CV has been deleted";
 	public static final String CV_UPDATED = "CV has been updated";
-	public static final String CV_FILES_PATH = "http://localhost:8081/files/";
+	public static final String CV_FILES_PATH = "http://localhost:8086/files/";
 	public static final String CV_FLAGGED = "This CV has been flagged (FYI... snitches get stitches)";
 	public static final String CV__ALREADY_FLAGGED = "CV is already flagged";
 
